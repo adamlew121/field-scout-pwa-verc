@@ -7,8 +7,7 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      // Precache wszystkich zasobów App Shell (JS, CSS, HTML, ikony)
-      includeAssets: ['vite.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
+      includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png'],
       manifest: {
         name: 'Field Scout PWA',
         short_name: 'FieldScout',
@@ -29,12 +28,17 @@ export default defineConfig({
             src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable'   // format maskable – wymaganie z instrukcji
+            purpose: 'any'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ]
       },
       workbox: {
-        // Strategia CacheFirst dla App Shell – ładuje się natychmiast nawet bez sieci
         globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
       }
     })
